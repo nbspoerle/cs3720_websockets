@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: spoerlen-ws-echo
+    runtime: python
+    plan: free
+    rootDir: echo
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+  - type: web
+    name: spoerlen-ws-chat
+    runtime: python
+    plan: free
+    rootDir: chat
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
